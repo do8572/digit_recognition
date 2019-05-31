@@ -1,6 +1,10 @@
-function dig_process(src, dest)
+function dig_process(src, dest, alfa)
+    if alfa > 1 || alfa < 0
+      printf("Setting alfa to 1.\n");
+    endif
+  
     %check if both src and dest strings
-    if !isstring(src) || !isstring(dest)
+    if !ischar(src) || !ischar(dest)
       printf("Both inputs have to be strings!\n");
       return;
     endif
@@ -14,6 +18,17 @@ function dig_process(src, dest)
       
     %SVD on matrix Ai
     [U, S, V] = svd(A);
+    
+    %use only n largest eingenvectors
+    d = diag(S);
+    n = round(alfa * length(d));
+    if n > length(d) || n < 0
+      n = length(d);
+    endif
+    
+    for j=n+1:length(d)
+      S(j, j) = 0;
+    endfor
     
     %set lernset paths
     upath = [dest "/" "U" num2str(i) ".mat"];

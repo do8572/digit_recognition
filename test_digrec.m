@@ -1,4 +1,4 @@
-function T = test_digrec(testset, data, accuracy)
+function T = test_digrec(testset, data)
   T = zeros(10, 10);
   
   for i=0:9
@@ -13,7 +13,7 @@ function T = test_digrec(testset, data, accuracy)
       IMG = imread(files{j});
       
       %get represented digit
-      dig = digrec(IMG, data, accuracy);
+      dig = digrec(IMG, data);
       
       T(i+1, dig+1) = T(i+1, dig+1) + 1;
 
