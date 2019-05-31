@@ -10,7 +10,7 @@
 function dig=digRec(b)
   %shrink or expand matrix to be of dim 16x16
   b = imresize(b, [16 16]);
-  imshow(b);
+  %imshow(b);
   
   %change formated image to vector   
   v = [];
