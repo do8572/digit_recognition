@@ -1,35 +1,17 @@
-%function dig=digRec(b, n)
-%%%
-%%function description
-%%%
-%Input:
-%   b ... 256x1 vector representing gray picture
-%   n ... number of most significant singular values used
-%Output:
-%   dig ... digit that most resembles digit represented by vector b
-function dig=digRec(b)
-  %shrink or expand matrix to be of dim 16x16
-  b = imresize(b, [16 16]);
-  %imshow(b);
+function dig=digrec(test, data, accuracy)
+  %format test image
+  b = format(test);
   
-  %change formated image to vector   
-  v = [];
-         
-  for k=1:16
-    v = [v; b(:, k)];
-  endfor
-  
-  b = double(v);
-  
-  %learnset path
-  path = "learnset";
-  
-  %assume the digit is 1
+  %assume the digit is 0
   dig = 0;
   
+  %set U and S path
+  upath = [data "/U0.mat"];
+  spath = [data "/S0.mat"];
+  
   %import lernset
-  load("learnset/U0");
-  load("learnset/S0");  
+  load(upath);
+  load(spath);  
   
   %solve for y1, U1*S1*y1 = b
   y = (U * S)\b;
@@ -38,9 +20,9 @@ function dig=digRec(b)
   min = norm(U' * b - S * y); 
   
   for i=1:9
-    %set lernset paths
-    upath = [path "/" "U" num2str(i) ".mat"];
-    spath = [path "/" "S" num2str(i) ".mat"];
+    %set U and S path
+    upath = [data "/U" num2str(i) ".mat"];
+    spath = [data "/S" num2str(i) ".mat"];
     
     %import lernset
     load(upath);
