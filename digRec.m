@@ -1,4 +1,4 @@
-function dig=digrec(test, data)  
+function dig=digRec(test, data)  
   %format test image
   b = format(test);
   

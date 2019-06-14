@@ -13,7 +13,7 @@ function T = test_digrec(testset, data)
       IMG = imread(files{j});
       
       %get represented digit
-      dig = digrec(IMG, data);
+      dig = digRec(IMG, data);
       
       T(i+1, dig+1) = T(i+1, dig+1) + 1;
 
