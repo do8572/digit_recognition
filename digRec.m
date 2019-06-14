@@ -1,15 +1,15 @@
-%function dig = digRec(test, data)
+%function dig = digRec(test, recdata)
 %calculates the closest digit to test
 %by solving min(||Ui' * b - Si * yi||)
 %where yi = (Ui * Si)\b and b = format(test)
 %
 %input:
 %   test ... test image
-%   data ... path to folder containing matrices U and S
+%   recdata ... path to folder containing matrices U and S
 %
 %output:
 %   dig ... recognised digit
-function dig=digRec(test, data)  
+function dig=digRec(test, recdata)  
   %format test image
   b = format(test);
   
@@ -17,8 +17,8 @@ function dig=digRec(test, data)
   dig = 0;
   
   %set U and S path
-  upath = [data "/U0.mat"];
-  spath = [data "/S0.mat"];
+  upath = [recdata "/U0.mat"];
+  spath = [recdata "/S0.mat"];
   
   %import lernset
   load(upath);
@@ -32,8 +32,8 @@ function dig=digRec(test, data)
   
   for i=1:9
     %set U and S path
-    upath = [data "/U" num2str(i) ".mat"];
-    spath = [data "/S" num2str(i) ".mat"];
+    upath = [recdata "/U" num2str(i) ".mat"];
+    spath = [recdata "/S" num2str(i) ".mat"];
     
     %import lernset
     load(upath);
