@@ -1,5 +1,5 @@
-# Created by Octave 5.1.0, Fri Jun 14 10:21:25 2019 GMT <unknown@DESKTOP-06BG9PA>
-# name: T1
+# Created by Octave 5.1.0, Fri Jun 14 19:34:11 2019 GMT <unknown@DESKTOP-06BG9PA>
+# name: T
 # type: matrix
 # rows: 10
 # columns: 10
@@ -13,42 +13,5 @@
  0 0 2 0 0 0 0 0 1 0
  0 0 0 1 0 2 0 0 0 0
  0 0 0 0 0 0 0 0 2 1
-
-
-# name: T2
-# type: matrix
-# rows: 10
-# columns: 10
- 3 0 0 0 0 0 0 0 0 0
- 1 1 0 0 0 0 1 0 0 0
- 0 0 2 0 0 1 0 0 0 0
- 0 0 0 1 0 0 0 2 0 0
- 0 0 0 0 1 1 0 0 1 0
- 0 1 0 0 0 1 0 0 1 0
- 0 0 0 0 1 0 1 0 1 0
- 0 0 0 0 0 1 0 2 0 0
- 0 0 0 0 0 0 0 1 1 1
- 0 1 0 0 1 0 0 0 0 1
-
-
-# name: T3
-# type: matrix
-# rows: 10
-# columns: 10
- 3 0 0 0 0 0 0 0 0 0
- 1 1 0 0 0 0 1 0 0 0
- 0 0 2 0 0 1 0 0 0 0
- 0 1 0 0 0 0 0 2 0 0
- 0 0 0 0 2 0 0 1 0 0
- 0 0 0 0 0 2 0 0 1 0
- 0 0 0 1 0 1 1 0 0 0
- 0 0 0 0 0 1 0 2 0 0
- 0 0 0 0 0 0 0 0 2 1
- 0 1 0 0 0 0 0 0 0 2
-
-
-# name: ans
-# type: scalar
-0
 
 
