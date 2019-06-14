@@ -1,14 +1,11 @@
-%function Format()
-%converts pictures of digits in the raw folder to the matrix Ai
-%wehere i represents the digit.
-%Then it splits Ai=Ui * Si * Vi' and saves Ui and Si into the lernset.
+%function s = Format(IMG)
+%converts picture IMG of digit to image vector s
 %
-%raw contents:
-%   i/* ... image directory of digit i
+%input:
+%   IMG ... grayscale image matrix
 %
-%learnset contents:
-%   Ui.mat ...  Ui matrix where i represents the digit
-%   Si.mat ...  Si matrix where i represents the digit
+%output:
+%   s ... 256x1 image vector
 function s = format(IMG)           
       %crop image matrix to square matrix
       img_min = min(size(IMG));

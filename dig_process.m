@@ -1,4 +1,15 @@
+%function dig_process(src, dest, alfa)
+%processes images in src folder and 
+%saves them to dest folder in the
+%form of Ui and Si, where i is the
+%represented digit
+%
+%input:
+%   src ... path to folder containing images
+%   dest ... path to folder containing matrices U and S
+%   alfa ... compresion factor
 function dig_process(src, dest, alfa)
+    %if alfa incorrect
     if alfa > 1 || alfa < 0
       printf("Setting alfa to 1.\n");
     endif

@@ -1,3 +1,14 @@
+%function dig = digRec(test, data)
+%calculates the closest digit to test
+%by solving min(||Ui' * b - Si * yi||)
+%where yi = (Ui * Si)\b and b = format(test)
+%
+%input:
+%   test ... test image
+%   data ... path to folder containing matrices U and S
+%
+%output:
+%   dig ... recognised digit
 function dig=digRec(test, data)  
   %format test image
   b = format(test);

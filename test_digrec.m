@@ -1,3 +1,14 @@
+%function T = test_digrec(testset, data)
+%creates matrix A whoose column vectors represent
+%images in the folder given by path 
+%
+%input:
+%   testset ... path to folder containing test images
+%   data ... path to folder containing matrices U and S
+%
+%output:
+%   T ... 10x10 matrix that represent sum of the mappings
+%         rows:actual image to cols:recognized image
 function T = test_digrec(testset, data)
   T = zeros(10, 10);
   
@@ -15,8 +26,10 @@ function T = test_digrec(testset, data)
       %get represented digit
       dig = digRec(IMG, data);
       
+      %increment matrix at (representedImg, recognisedImg)
       T(i+1, dig+1) = T(i+1, dig+1) + 1;
-
+      
+      %print result of test
       printf("%d %d: %d\n", i, j, dig);      
     endfor
   endfor  
