@@ -17,7 +17,7 @@
 	\section{Approach}
 	\paragraph{}
 	Place subsequent column vectors that represent a numeral image one under another, thereby creating a column vector representing the image.
-	Then place all image vector representing the same numeral side by side into a matrix named $A_i$. 
+	Then place all image vectors representing the same numeral side by side into a matrix named $A_i$. 
 	%img1
 	\[
 		IMG = \begin{bmatrix}
@@ -125,7 +125,7 @@
 	\begin{lstlisting}
 	Image -> Slice Using guides
 	\end{lstlisting}
-	and then save the images in folders named after the numerals they represent that is located in a folder named learnset.
+	and then save the images in folders named after the numerals they represent that are located in a folder named learnset.
 	For saving I use the SAVEALL script
 	\begin{lstlisting}	
 	(define (script-fu-save-all-images) 
@@ -159,7 +159,7 @@
 	Function: $format()$
 	
 	\paragraph{}
-	While the images are already in a grayscale format they still I permit them to be of any size and resize them with the function $format()$ which also changes them from image matrices to the above specified column vector $b$.
+	While the images are already in a grayscale format I permit them to be of any size and resize them with the function $format()$ which also changes them from image matrices to the above specified column vector $b$.
 	
 	\section{Creation of matrices $U_i$ and $S_i$}
 	Functions: $digmat()$, $dig\_process()$
@@ -193,7 +193,7 @@
       		S(j, j) = 0;
     	endfor 
 	\end{lstlisting}
-	However, this feature was incorrectly implemented, so while recognition accuracy indeed goes down the time to recognize a digit doesn’t and the space uses is also not reduced. Obviously, this defeats the whole purpose of using less singular values.
+	However, this feature was incorrectly implemented, so while recognition accuracy indeed goes down the time to recognize a digit doesn’t and the space used is also not reduced. Obviously, this defeats the whole purpose of using less singular values.
 	
 	\section{Digit recognition}
 	Functions: $digRec()$
@@ -206,14 +206,15 @@
 	 y = (U * S)\b;
  	min = norm(U' * b - S * y); 
 	\end{lstlisting}
+	and then it repeats the obove process for every subsequent numeral.
 	
 	\section{Program testing}
 	Function: $test\_digrec()$
 	
 	\paragraph{}
-	$Test\_digrec()$ takes as input parameters a path a testset and a path where the matrices $U_i$ and $S_i$ are stored.
-	It performs $digRec()$ for every numeral in the testset and prints the returned value as well as saves the number of times a certain numeral was identified as some numeral in the matrix $T$, which rows represent the numerals in descending order and columns represent the what those numerals were identified as.
-	This allows us not only to see whether the output was correct but also how the input was misinterpreted and how it was misinterpreted.
+	$Test\_digrec()$ takes as input parameters a path to the testset and a path to where the matrices $U_i$ and $S_i$ should be stored.
+	It performs $digRec()$ for every numeral in the testset and prints the returned value as well as saves the number of times a certain numeral was identified as some numeral in the matrix $T$, which rows represent the numerals in descending order and columns represent what those numerals were identified as.
+	This allows us not only to see whether the output was correct but also how the input was misinterpreted.
 	
 	\section{Results}
 	I used five different sets testing different aspects of my project assignment and saved them in folders named datai and saved the results in $T_i$.
@@ -229,24 +230,33 @@
 	\section{Findings}
 	
 	\paragraph{}
-	To my lack of surprise MNIST’s professionally made sets faired the best. This was probably because of the testset size since despite using only a small portion of 60 of the MNIST set of 10 000 available online, which was not that bigger than set 5 with its 40 learnset size for every digit. I am assuming image centering, normalization and other better image processing also affected the test result. 
-	It is also worth mentioning is the MNIST dataset was written on a tablet with a stylus therefore eliminating hand pressure as a factor, while my datasets being written on paper and then scanned did not.
+	\subparagraph{}
+	To my lack of surprise MNIST’s professionally made sets faired the best. This was probably because of the greater testset size(despite using only a small portion of 60 of the MNIST set of 10 000 available online, which was not that bigger than set 5 with its 40 learnset size for every digit). I am assuming image centering, normalization and other better image processing also affected the test result. 
+	It is also worth mentioning that the MNIST dataset was written on a tablet with a stylus therefore eliminating hand pressure as a factor, while my datasets being written on paper and then scanned did not.
 	The MNIST dataset had an above 70\% accuracy at recognizing every single numeral and numeral misrecognition were also the most predictable mirroring real life misperceptions.
+	\subparagraph{}
 	The second best was dataset 5 with an above 40\% accuracy, but an average 70\% accuracy. As the dataset was the second biggest and used test that were taken from the same batch as its learnset this was expected.
+	\subparagraph{}
 	The third was dataset 3 despite being a mesh of two differently created learnset having an average accuracy of 55\%, however it completely failed to correctly recognized numeral 3.
+	\subparagraph{}
 	The fourth was dataset 2 which had a 46\% average accuracy, but had a better minimum recognition of 33\% compared to 3.
+	\subparagraph{}
 	Surprisingly dataset 4 despite its same size as dataset 3, bigger size than dataset 2 and the fact that only one batch was used compared to 3 was worse than both the prior. With an average accuracy of 36\% and two complete misses at numerals 1 and 5. I assume this was the influence of randomness due the small testset used.
+	\subparagraph{}
 	Finally, dataset 1 scored the worst having the same learnset size as 2 but no image enhancements whatsoever. I assume the background lines where the main reason for its worse performance as these probably weighed in heavily on the image recognition. Having a 30\% accuracy and three complete misses.
-	As the other datasets where inferior to dataset 5, I am going to limit any further comments to it and the MNIST dataset.
+	\subparagraph{}
+	As the other datasets where inferior to dataset 5, I am going to limit further comments to it and the MNIST dataset.
 	Surprisingly enough I expected the program to make mistakes at similar places that humans do, but this was not the case. 
 	Traces of matrix symmetry however where present and more strongly pronounced in the MNIST dataset due to test size.
-	I also cross test the MNIST learnset on the testset 5 and vice versa. The results of these are saved in T6 and T7.
+	I also cross tested the MNIST learnset on the testset 5 and vice versa. The results of these are saved in T6 and T7.
 	Testing the MNIST learnset on testset 5 I got a 17\% accuracy and 3 complete misses, while using the learnset 5 on MNIST testset I got 22\% accuracy, both respectively around 20\%.
 	These tests clearly show, there is a big accuracy drop between recognizing your own numerals vs someone else’s.
-	However, the results do show recognition clusters, so while numerals may have been misinterpreted, they were misinterpreted because apparently some other image was closer to them.
-	Img of numeral 0 from MNIST and learnset 5
-	In conclusion the method which was used for numeral recognition is relatively simple, straightforward and easy to implement as it should be considering it is essentially simply checking the average weighed distance of the test to the images representing different numerals. Do to the differences between different handwritings it the size of the learnset must be a lot bigger than the currently used learnsets. Assuming we’d use double the number of images to reach 80\% accuracy and there were 10 distinct numeral writing stiles we would need a minimum of 1000 images for every numeral. 
-	The last test shows another problem and that’s different digit similarity across different handwritings. For example, 0 might be misinterpreted as a 6(The case in the above image.), this can happen to humans as well. Humans usually use context and logical deduction to overcome this last hurdle however this is currently not the case for computers, because of this there is an upper bound on the accuracy of image recognition. 
+	However, the results do show recognition clusters, so while numerals may have been misinterpreted, they were misinterpreted because apparently some other numeral was closer to them.
+	
+	\subparagraph{}
+	In conclusion the method which was used for numeral recognition is relatively simple, straightforward and easy to implement as it should be considering it is simply checking the average weighed distance of the test to the images representing different numerals. Do to the differences between different handwritings the size of the learnset must be a lot bigger than the currently used learnsets. Assuming we’d use double the number of images to reach 90\% accuracy and there were 10 distinct numeral writing stiles we would need a minimum of 1000 images for every numeral. The number is (just viewing the full MNIST dataset) definitely higher. 
+	\subparagraph{}
+	The last test shows another problem and that’s different digit similarity across different handwritings. For example, 0 might be misinterpreted as a 6, this can happen to humans as well. Humans usually use additional context-based information and logical deduction to overcome this last hurdle however this is currently not the case for computers, because of this there is an upper bound on the accuracy of image recognition. 
 
 \bibliography{porocilo} 
 \bibliographystyle{ieeetr}
